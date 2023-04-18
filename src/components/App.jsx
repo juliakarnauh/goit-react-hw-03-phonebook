@@ -17,7 +17,7 @@ export class App extends Component {
     this.setState({ contacts: JSON.parse(contactsFromLS) });}
   }
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.contacts.length !== this.contacts.length){
+    if(prevState.contacts !== this.state.contacts){
     localStorage.setItem(CONTACTS_KEY, JSON.stringify(this.state.contacts));
   }}
   addContact = data => {
