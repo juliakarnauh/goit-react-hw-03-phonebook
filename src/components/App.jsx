@@ -13,11 +13,13 @@ export class App extends Component {
   };
   componentDidMount() {
     const contactsFromLS = localStorage.getItem(CONTACTS_KEY);
-    this.setState({ contacts: JSON.parse(contactsFromLS) });
+    if(JSON.parse(contactsFromLS)?.length){
+    this.setState({ contacts: JSON.parse(contactsFromLS) });}
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.contacts.length !== this.contacts.length){
     localStorage.setItem(CONTACTS_KEY, JSON.stringify(this.state.contacts));
-  }
+  }}
   addContact = data => {
     const { contacts } = this.state;
     const duplicate = contacts.find(
