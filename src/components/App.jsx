@@ -1,23 +1,23 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { ContactForm} from './ContactForm/ContactForm';
-import {Filter} from './Filter/Filter';
-import {ContactList} from './ContactList/ContactList';
+import { ContactForm } from './ContactForm/ContactForm';
+import { Filter } from './Filter/Filter';
+import { ContactList } from './ContactList/ContactList';
 import contacts from './contact.json';
 
-const CONTACTS_KEY = 'contacts_key'
+const CONTACTS_KEY = 'contacts_key';
 export class App extends Component {
   state = {
     contacts,
     filter: '',
   };
-componentDidMount(){
-  const contactsFromLS = localStorage.getItem(CONTACTS_KEY)
-  this.setState({contacts: JSON.parse(contactsFromLS)})
-}
-componentDidUpdate(){
-  localStorage.setItem(CONTACTS_KEY , JSON.stringify(this.state.contacts))
-}
+  componentDidMount() {
+    const contactsFromLS = localStorage.getItem(CONTACTS_KEY);
+    this.setState({ contacts: JSON.parse(contactsFromLS) });
+  }
+  componentDidUpdate() {
+    localStorage.setItem(CONTACTS_KEY, JSON.stringify(this.state.contacts));
+  }
   addContact = data => {
     const { contacts } = this.state;
     const duplicate = contacts.find(
